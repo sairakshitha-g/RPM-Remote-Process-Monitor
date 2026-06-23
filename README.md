@@ -10,12 +10,12 @@ Traditional QNX process monitoring relies on command-line tools like `pidin`, wh
 
 ## Features
 
-- 📊 Real-time CPU and memory usage visualization
-- 🧾 Live process table with PID, name, CPU%, memory, and thread count
-- 🛑 One-click process termination ("Kill") directly from the dashboard
-- 🌐 Remote, browser-based access — no SSH or terminal required
-- 🌳 Process tree view for parent-child relationships
-- 🌙 Dark mode dashboard UI
+- Real-time CPU and memory usage visualization
+- Live process table with PID, name, CPU%, memory, and thread count
+- One-click process termination ("Kill") directly from the dashboard
+- Remote, browser-based access — no SSH or terminal required
+- Process tree view for parent-child relationships
+- Dark mode dashboard UI
 
 ## System Architecture
 
@@ -52,23 +52,12 @@ Web Browser Dashboard (process list, charts, kill controls)
 ```
 RPM-Remote-Process-Monitor/
 ├── server/                 # QNX C backend source
-│   └── rpm_server.c        # HTTP server, process data collection via pidin/procfs
+│   ├── Server.c            # HTTP server, process data collection via pidin/procfs
+│   └── MakeFile.c
 ├── dashboard/              # Web frontend
 │   ├── index.html
 │   ├── style.css
 │   └── script.js
-├── docs/                   # Project report and documentation
-│   └── Final_Document_project.pdf
-├── screenshots/            # Result images from testing
-│   ├── 5.1_hardware_setup.png
-│   ├── 5.2.1_client_server_program.png
-│   ├── 5.2.2_pidin_commands.png
-│   ├── 5.2.3_server_waiting.png
-│   ├── 5.2.4_dashboard_files.png
-│   ├── 5.3.1_cpu_usage_visualization.png
-│   ├── 5.3.2_dashboard_analysis.png
-│   ├── 5.3.3_process_table.png
-│   └── 5.3.4_system_information.png
 └── README.md
 ```
 
@@ -81,53 +70,11 @@ RPM-Remote-Process-Monitor/
 5. The JSON response is sent back to the client.
 6. The dashboard updates in real time with the latest CPU, memory, and process information.
 
-## Project Output / Screenshots
-
-### Hardware Setup
-Raspberry Pi 4 running QNX, connected via Ethernet to the host system.
-
-![Hardware Setup](screenshots/5.1_hardware_setup.png)
-
-### Server Build & Execution (QNX Momentics IDE)
-The backend server source code being built and run successfully.
-
-![Client Server Program](screenshots/5.2.1_client_server_program.png)
-
-### Pidin Command Output
-Server fetching live process details from the QNX system using `pidin`.
-
-![Pidin Commands](screenshots/5.2.2_pidin_commands.png)
-
-### Server Listening for Requests
-Server running and waiting for client connections on port 8080.
-
-![Server Waiting for Request](screenshots/5.2.3_server_waiting.png)
-
-### CPU Usage Visualization
-Real-time CPU usage graph on the dashboard, updated continuously from live backend data.
-
-![CPU Usage Visualization](screenshots/5.3.1_cpu_usage_visualization.png)
-
-### Dashboard Analysis View
-Memory usage bar, top CPU-consuming processes, and process tree shown together.
-
-![Dashboard Analysis and Visualization](screenshots/5.3.2_dashboard_analysis.png)
-
-### Process Table with Control Actions
-Full process list with PID, CPU%, memory, thread count, and a **Kill** button to terminate any process directly from the browser.
-
-![Process Table and Control Functionality](screenshots/5.3.3_process_table.png)
-
-### System Information (QNX Momentics IDE)
-CPU utilization and process resource details viewed directly from the IDE's system tools.
-
-![System Information](screenshots/5.3.4_system_information.png)
-
 ## Setup & Usage
 
 ### 1. Backend (QNX Server)
 1. Open the project in **QNX Momentics IDE**.
-2. Build the `rpm_server` project using the QNX SDP toolchain.
+2. Build the server project using the QNX SDP toolchain.
 3. Deploy the compiled binary to the target (Raspberry Pi 4 running QNX).
 4. Run the server — it will start listening on port `8080`:
    ```
