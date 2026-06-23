@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>QNX Remote Process Monitor</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>QNX Remote Process Monitor</h1>
+
+<button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+</header>
+
+
+<div class="controls">
+
+<select id="targetSelect">
+
+<option value="http://10.0.0.1:8080">Target 10.0.0.1</option>
+
+</select>
+
+<input id="searchBox" placeholder="Search process..." onkeyup="filterProcesses()">
+
+</div>
+
+
+<h2>CPU Per Core</h2>
+
+<canvas id="cpuChart"></canvas>
+
+
+<h2>Memory Usage</h2>
+
+<div class="memoryBar">
+
+<div id="memoryFill"></div>
+
+</div>
+
+
+<h2>Top CPU Processes</h2>
+
+<table id="topTable">
+
+<thead>
+
+<tr>
+<th>PID</th>
+<th>Process</th>
+<th>CPU %</th>
+</tr>
+
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+
+<h2>Process Tree</h2>
+
+<ul id="processTree"></ul>
+
+
+<h2>All Processes</h2>
+
+<table id="processTable">
+
+<thead>
+
+<tr>
+<th>PID</th>
+<th>Process</th>
+<th onclick="sortCPU()">CPU %</th>
+<th>Memory</th>
+<th>Threads</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody></tbody>
+
+</table>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
